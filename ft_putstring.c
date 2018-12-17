@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "includes/ft_printf.h"
 
 void ft_putstring(char *str, size_t n)
 {
@@ -20,15 +20,20 @@ void ft_putstring(char *str, size_t n)
     write(1, str, x);
 }
 
-int		try_get(char **str)
+size_t		ft_nbrlen(size_t nb)
 {
-	int x;
+	size_t	i;
 
-	x = 0;
-	while (ft_isdigit(**str))
+	i = 0;
+	if (nb <= 0)
 	{
-		x = x * 10 + (**str - '0');
-		(*str)++;
+		nb = -nb;
+		i++;
 	}
-	return (x);
+	while (nb > 0)
+	{
+		nb = nb / 10;
+		i++;
+	}
+	return (i);
 }

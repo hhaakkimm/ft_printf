@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_compare.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabdrakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/13 19:56:44 by aabdrakh          #+#    #+#             */
-/*   Updated: 2018/09/16 16:28:07 by aabdrakh         ###   ########.fr       */
+/*   Created: 2018/12/08 16:08:24 by aabdrakh          #+#    #+#             */
+/*   Updated: 2018/12/08 16:08:26 by aabdrakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <string.h>
 
-void	ft_putstr(char const *s)
+char    *ft_compare(char *s1, char *s2)
 {
-	size_t	i;
+    int i;
 
-	i = 0;
-	if (!s)
-		return ;
-	while (s[i] != '\0')
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
+    i = 0;
+    while (s1 && s2 && s1[i] == s2[i])
+        i++;
+    if (s2[i] == '\0')
+        return (s1 + i);
+    return (NULL);
 }

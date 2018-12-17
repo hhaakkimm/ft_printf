@@ -22,9 +22,10 @@ SRC += ft_isprint.c ft_memcpy.c ft_strcat.c ft_strlen.c ft_strsub.c
 SRC += ft_itoa.c ft_memdel.c ft_strchr.c ft_strmap.c ft_strtrim.c	
 SRC += ft_lstadd.c ft_memmove.c ft_strclr.c ft_strmapi.c ft_tolower.c	
 SRC += ft_lstdel.c ft_memset.c ft_strcmp.c ft_strncat.c ft_toupper.c	
-SRC += ft_lstdelone.c ft_putchar.c ft_strcpy.c ft_strncmp.c	
+SRC += ft_lstdelone.c ft_putchar.c ft_strcpy.c ft_strncmp.c	ft_compare.c
 SRC += ft_lstiter.c ft_putchar_fd.c ft_strdel.c ft_strncpy.c
-SRC += ft_min.c ft_max.c ft_lstcount.c ft_sqrt.c
+SRC += ft_min.c ft_max.c ft_lstcount.c ft_sqrt.c ft_strchr2.c
+SRC += printf_stuff.c printf_stuff_2.c
 
 OBJECTS = *.o
 

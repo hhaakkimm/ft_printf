@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_strchr2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aabdrakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/13 19:56:44 by aabdrakh          #+#    #+#             */
-/*   Updated: 2018/09/16 16:28:07 by aabdrakh         ###   ########.fr       */
+/*   Created: 2018/12/08 16:03:42 by aabdrakh          #+#    #+#             */
+/*   Updated: 2018/12/08 16:03:44 by aabdrakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <string.h>
-
-void	ft_putstr(char const *s)
+int     ft_strchr2(char *s, char c)
 {
-	size_t	i;
+    int i;
 
-	i = 0;
-	if (!s)
-		return ;
-	while (s[i] != '\0')
-	{
-		write(1, &s[i], 1);
-		i++;
-	}
+    i = 0;
+    while (s[i])
+    {
+        if (s[i] == c)
+        {
+            return (i);
+        }
+        i++;
+    }
+    return (-1);
 }
