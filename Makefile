@@ -1,58 +1,36 @@
-MAKE = make -C
 NAME = libftprintf.a
-LIB = libft/
-FLAGS = -Wall -Wextra -Werror
-CC = gcc
-HEADER = -I /includes
 
-CFILES =		src/redirection.c\
-				src/parse.c\
-				src/ft_strchr2.c\
-				src/ft_printf.c\
-				src/initial_print.c\
-				src/handle_int.c\
-				src/handle_char.c\
-				src/handle_wchar.c\
-				src/handle_str.c\
-				src/handle_wstr.c\
-				src/handle_hex.c\
-				ft_putstring.c\
-				src/handle_ptr.c\
-				src/handle_octal.c\
-				src/handle_unsigned.c\
-				src/handle_escape.c\
-				src/get_int_type.c
+SRC = src/redirection.c src/parse.c src/ft_strchr2.c src/ft_printf.c
+SRC += src/initial_print.c src/handle_int.c src/handle_char.c
+SRC += src/handle_wchar.c src/handle_str.c src/handle_wstr.c
+SRC += src/handle_hex.c ft_putstring.c src/handle_ptr.c src/get_int_type.c
+SRC += src/handle_octal.c src/handle_unsigned.c src/handle_escape.c
 
-LIBM = $(MAKE) $(LIB)
-LIBR = $(MAKE) $(LIB) re
-LIBC = $(MAKE) $(LIB) clean
-LIBF = $(MAKE) $(LIB) fclean
-OBJECTS = $(CFILES:.c=.o)
-OBJ_DIR = objects
+OBJ = *.o
 
-DOBJS = $(CFILES:.c = .o)
+INC = -I libft/ -I includes/
+
+LIBFT =	libft/libft.a
+
 all: $(NAME)
 
-$(NAME):
-	@$(LIBM)
-	@$(CC) $(FLAGS) -c $(CFILES) $(Header)
-	@cp libft/libft.a $(NAME)
-	@ar rcs $(NAME) *.o
+$(NAME): $(OBJ)
+	@$(MAKE) -C libft/
+	@cp libft/libft.a ./$(NAME)
+	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@mkdir $(OBJ_DIR)
-	@mv *.o $(OBJ_DIR)
+
+$(OBJ): $(SRC)
+	@gcc -c -Wall -Wextra -Werror $(INC) -c $^
 
 clean:
-	@$(LIBC)
-	@/bin/rm -rf *.o
+		rm -f $(OBJ)
+			make clean -C ./libft/
 
-fclean:
-	@$(LIBF)
-	@/bin/rm -f $(NAME) *.a
-	@/bin/rm -rf *.o
-	@rm -rf $(NAME)
-	@rm -f $(DNAME)
+fclean: clean
+		rm -f $(NAME)
+			make fclean -C ./libft/
 
 re: fclean all
 
-.PHONY: all clean fclean re 
+.PHONY : all, re, clean, flcean
