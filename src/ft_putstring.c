@@ -6,11 +6,11 @@
 /*   By: aabdrakh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/02 16:12:08 by aabdrakh          #+#    #+#             */
-/*   Updated: 2018/12/02 16:12:10 by aabdrakh         ###   ########.fr       */
+/*   Updated: 2018/12/20 19:34:20 by aabdrakh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "../includes/ft_printf.h"
 
 void ft_putstring(char *str, size_t n)
 {
