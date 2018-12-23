@@ -44,6 +44,8 @@ int			handlers(char **format, va_list list, t_arg *arg)
 		return handle_unsigned(list, arg);
 	else if (c == 'x' || c == 'X')
 		return handle_hex(list, arg);
+	else if (c == 'f' || c == 'F')
+		return (handle_float(list, arg));
 	c = **format;
 	if (ft_strchr2("+-0 #.hl", c))
 		return (-1);

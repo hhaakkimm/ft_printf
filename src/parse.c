@@ -104,10 +104,6 @@ char	*parse_length(char **format, t_arg *arg)
 			arg->length = h;
 		else if (**format == 'l')
 			arg->length = l;
-		else if (**format == 'j')
-			arg->length = j;
-		else if (**format == 'z')
-			arg->length = z;
 		return ((*format)++);
 	}
 	else
@@ -116,7 +112,7 @@ char	*parse_length(char **format, t_arg *arg)
 
 char	*parse_conversion(char **format, t_arg *arg)
 {
-	if (ft_strchr2("sSpdDioOuUxXcC%", **format))
+	if (ft_strchr2("sSpdDioOuUxXcCfF%", **format))
 	{
 		arg->conversion = **format;
 		(*format)++;
