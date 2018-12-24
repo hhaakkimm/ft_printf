@@ -30,6 +30,17 @@ intmax_t	get_int_type_by_length(va_list list, t_arg *arg)
 	return (nb);
 }
 
+long double		get_float_len(va_list list, t_arg *arg)
+{
+	long double	nb;
+
+	if (arg->length == l)
+		nb = (double)va_arg(list, double);
+	else if (arg->length == ll)
+		nb = va_arg(list, long double);
+	return (nb);
+}
+
 uintmax_t	get_unsigned_type_by_length(va_list list, t_arg *arg)
 {
 	uintmax_t	nb;

@@ -17,7 +17,7 @@ typedef struct	s_arg
 	int			width_nb;
 	int			precision;
 	int			precision_nb;
-	enum		{null, h, hh, l, ll, j, z} length;
+	enum		{null, h, hh, l, ll} length;
 	char		conversion;
 	int			print_count;
 	int			neg_arg_int;
@@ -25,6 +25,7 @@ typedef struct	s_arg
 
 int     		ft_strchr2(char *s, char c);
 
+long double		get_float_len(va_list list, t_arg *arg);
 int				handlers(char **format, va_list list, t_arg *arg);
 size_t			ft_nbrlen(size_t nb);
 int				solve_arg(char **format, va_list list, t_arg *sarg);
