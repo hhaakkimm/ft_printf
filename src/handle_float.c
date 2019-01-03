@@ -25,8 +25,8 @@ static void	prepare_float(int *sign, long double *n, t_arg *f)
 		*n = -(*n);
 		*sign = 1;
 	}
-	f->precision = (f->precision != 0) ? f->precision : 6;
-	while (f->precision >= 0 && i++ < f->precision)
+	f->precision_nb = (f->precision_nb != 0) ? f->precision_nb : 6;
+	while (f->precision_nb >= 0 && i++ < f->precision_nb)
 		pi /= 10;
 	*n += pi;
 }
@@ -40,16 +40,16 @@ static char	*ft_ftoa(long double n, t_arg *f)
 	int		pos;
 
 	prepare_float(&sign, &n, f);
-	//printf("%Lf fourth\n", n);
 	dec = ft_itoa((long long int)n);
 	len = ft_strlen(dec);
-	dst = ft_strnew(sign + len + 1 + ((f->precision > 0) ? f->precision : 0));
+	dst = ft_strnew(sign + len + 1 + ((f->precision_nb > 0) ? f->precision_nb : 0));
+	
 	pos = sign;
 	ft_strcpy(dst + pos, dec);
 	pos += len;
-	if (f->precision > 0)
+	if (f->precision_nb > 0)
 		dst[pos++] = '.';
-	while (pos <= len + sign + ((f->precision > 0) ? f->precision : 0))
+	while (pos <= len + sign + ((f->precision_nb > 0) ? f->precision_nb : 1))
 	{
 		dst[pos++] = ((unsigned long long int)(n * 10) % 10) + '0';
 		n *= 10;
@@ -80,6 +80,7 @@ int		handle_float(va_list list, t_arg *arg)
 	else
 		n = (double)va_arg(list, double);
 	//printf("%f inital\n", n);
+	//printf("%d %d\n", arg->precision, arg->precision_nb);
 	ft_putstr(convert_float_nbr(n, arg));
 	return (arg->print_count);
 }
