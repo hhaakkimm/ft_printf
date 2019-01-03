@@ -36,7 +36,7 @@ long double		get_float_len(va_list list, t_arg *arg)
 
 	if (arg->length == l)
 		nb = (double)va_arg(list, double);
-	else if (arg->length == ll)
+	else
 		nb = va_arg(list, long double);
 	return (nb);
 }

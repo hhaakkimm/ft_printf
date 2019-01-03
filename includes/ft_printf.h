@@ -2,16 +2,12 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
+# include <stdio.h>
 # include "../libft/libft.h"
 # define FLAGS "-0+ #"
 
 typedef struct	s_arg
 {
-	int			flag_hash;
-	int			flag_zero;
-	int			flag_minus;
-	int			flag_space;
-	int			flag_plus;
 	char		flags[6];
 	int			field_width;
 	int			width_nb;
@@ -41,6 +37,7 @@ void			print_struct(t_arg *arg);
 void			print_padded_char(int padded_len, t_arg *arg, char c);
 void			print_int_sign(t_arg *arg);
 int				handle_int(va_list list, t_arg *arg);
+int				handle_float(va_list list, t_arg *arg);
 void			int_output1(intmax_t nb, t_arg *arg, int arg_len);
 void			int_output2(intmax_t nb, t_arg *arg, int arg_len);
 void			int_output3(intmax_t nb, t_arg *arg, int arg_len);

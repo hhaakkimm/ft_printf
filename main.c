@@ -15,7 +15,10 @@
 
 int main()
 {
-	float d = 5.23456;
-	ft_printf("%.4d", d);
-	ft_printf("Le fichier{cyan}%s{eoc} contient : {red}%s{eoc}", "HAKEEM", "ATA");
+	double d = 10.1232;
+	int dd = 111;
+	//ft_printf("%d\n", dd);
+	//ft_printf("%c\n", 'T');
+	ft_printf("%f\n", d);
+	//printf("%f", d);
 }

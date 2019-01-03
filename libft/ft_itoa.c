@@ -23,7 +23,7 @@ char	*ft_itoa(int n)
 	on = n < 0 ? 1 : 0;
 	col = n;
 	temp = (n < 0) ? (-n) : n;
-	while (n > 8 || n < -8)
+	while (n > 9 || n < -9)
 	{
 		on++;
 		n = n / 10;
