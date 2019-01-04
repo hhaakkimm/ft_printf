@@ -33,21 +33,21 @@ int			handlers(char **format, va_list list, t_arg *arg)
 	parse_conversion(format, arg);
 	c = arg->conversion;
 	if (c == 's' || c == 'S' || c == 'c' || c == 'C' || c == '%')
-		return str_type(c, list, arg);
+		return (str_type(c, list, arg));
 	else if (c == 'p')
-		return handle_ptr(list, arg);
+		return (handle_ptr(list, arg));
 	else if (c == 'd' || c == 'D' || c == 'i')
-		return handle_int(list, arg);
+		return (handle_int(list, arg));
 	else if (c == 'o' || c == 'O')
-		return handle_octal(list, arg);
+		return (handle_octal(list, arg));
 	else if (c == 'u' || c == 'U')
-		return handle_unsigned(list, arg);
+		return (handle_unsigned(list, arg));
 	else if (c == 'x' || c == 'X')
-		return handle_hex(list, arg);
+		return (handle_hex(list, arg));
 	else if (c == 'f' || c == 'F')
 		return (handle_float(list, arg));
 	c = **format;
-	if (ft_strchr2("+-0 #.hl", c))
+	if (ft_chr2("+-0 #.hl", c))
 		return (-1);
 	else
 		return (0);

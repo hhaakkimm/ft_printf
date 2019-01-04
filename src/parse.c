@@ -17,9 +17,9 @@ char	*parse_flag(char **format, t_arg *arg)
 	int i;
 
 	i = 0;
-	if (ft_strchr2(FLAGS, **format))
+	if (ft_chr2(FLAGS, **format))
 	{
-		while (ft_strchr2(FLAGS, **format))
+		while (ft_chr2(FLAGS, **format))
 		{
 			arg->flags[i] = **format;
 			i++;
@@ -40,7 +40,7 @@ char	*parse_width(char **format, t_arg *arg, va_list list)
 		{
 			if ((int_arg = va_arg(list, int)) < 0)
 			{
-				if (!ft_strchr2(arg->flags, '-'))
+				if (!ft_chr2(arg->flags, '-'))
 					arg->flags[ft_strlen(arg->flags)] = '-';
 				arg->width_nb = -int_arg;
 			}
@@ -68,7 +68,7 @@ char	*parse_prescision(char **format, t_arg *arg, va_list list)
 		if (**format == '*')
 		{
 			if ((int_prec = va_arg(list, int)) >= 0)
-				arg->precision_nb = int_prec;
+				arg->pre_nb = int_prec;
 			else
 			{
 				arg->precision = 0;
@@ -80,7 +80,7 @@ char	*parse_prescision(char **format, t_arg *arg, va_list list)
 		else if (ft_isdigit(**format))
 		{
 			while (ft_isdigit(**format))
-				arg->precision_nb = arg->precision_nb * 10 + *(*format)++ - '0';
+				arg->pre_nb = arg->pre_nb * 10 + *(*format)++ - '0';
 		}
 	}
 	return (*format);
@@ -112,7 +112,7 @@ char	*parse_length(char **format, t_arg *arg)
 
 char	*parse_conversion(char **format, t_arg *arg)
 {
-	if (ft_strchr2("sSpdDioOuUxXcCfF%", **format))
+	if (ft_chr2("sSpdDioOuUxXcCfF%", **format))
 	{
 		arg->conversion = **format;
 		(*format)++;

@@ -15,35 +15,36 @@
 void	init(t_arg *arg)
 {
 	int i;
-	
+
 	i = 0;
 	while (i++ < 6)
 		arg->flags[i] = '\0';
 	arg->field_width = 0;
 	arg->width_nb = 0;
 	arg->precision = 0;
-	arg->precision_nb = 0;
+	arg->pre_nb = 0;
 	arg->conversion = 0;
 	arg->print_count = 0;
-	arg->neg_arg_int = 0;
+	arg->neg_arg = 0;
 }
 
 void	print_int_sign(t_arg *arg)
 {
-	if ((ft_strchr2(arg->flags, '+') || ft_strchr2(arg->flags, ' ')) && arg->neg_arg_int == 0)
+	if ((ft_chr2(arg->flags, '+') || ft_chr2(arg->flags, ' ')) &&
+	arg->neg_arg == 0)
 	{
-		if (ft_strchr2(arg->flags, '+'))
+		if (ft_chr2(arg->flags, '+'))
 		{
 			write(1, "+", 1);
 			arg->print_count++;
 		}
-		else if (ft_strchr2(arg->flags, ' '))
+		else if (ft_chr2(arg->flags, ' '))
 		{
 			write(1, " ", 1);
 			arg->print_count++;
 		}
 	}
-	if (arg->neg_arg_int)
+	if (arg->neg_arg)
 	{
 		write(1, "-", 1);
 		arg->print_count++;

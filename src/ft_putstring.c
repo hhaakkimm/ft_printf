@@ -12,15 +12,18 @@
 
 #include "../includes/ft_printf.h"
 
-void ft_putstring(char *str, size_t n)
+void	ft_putstring(char *str, size_t n)
 {
-    int x;
-    
-    x = (ft_strlen(str) < n) ? ft_strlen(str) : n;
-    write(1, str, x);
+	int	x;
+
+	if (ft_strlen(str) < n)
+		x = ft_strlen(str);
+	else
+		x = n;
+	write(1, str, x);
 }
 
-size_t		ft_nbrlen(size_t nb)
+size_t	ft_nbrlen(size_t nb)
 {
 	size_t	i;
 

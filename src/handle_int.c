@@ -18,7 +18,7 @@ int		handle_int(va_list list, t_arg *arg)
 	intmax_t	nb;
 	int			arg_len;
 
-	if (arg->precision || ft_strchr2(arg->flags, '-'))
+	if (arg->precision || ft_chr2(arg->flags, '-'))
 	{
 		i = -1;
 		while (++i < 6)
@@ -28,7 +28,7 @@ int		handle_int(va_list list, t_arg *arg)
 	if ((nb = get_int_type_by_length(list, arg)) < 0)
 	{
 		nb = -nb;
-		arg->neg_arg_int = 1;
+		arg->neg_arg = 1;
 	}
 	arg_len = ft_nbrlen(nb);
 	return (int_output_helper(arg, nb, arg_len));
@@ -36,9 +36,9 @@ int		handle_int(va_list list, t_arg *arg)
 
 int		int_output_helper(t_arg *arg, intmax_t nb, int arg_len)
 {
-	if (!ft_strchr2(arg->flags, '-') && !ft_strchr2(arg->flags, '0'))
+	if (!ft_chr2(arg->flags, '-') && !ft_chr2(arg->flags, '0'))
 	{
-		if (arg->precision == 1 && arg->precision_nb == 0)
+		if (arg->precision == 1 && arg->pre_nb == 0)
 		{
 			if (arg->width_nb)
 				print_padded_char(arg->width_nb, arg, ' ');
@@ -53,9 +53,9 @@ int		int_output_helper(t_arg *arg, intmax_t nb, int arg_len)
 		}
 		int_output1(nb, arg, arg_len);
 	}
-	else if (ft_strchr2(arg->flags, '-'))
+	else if (ft_chr2(arg->flags, '-'))
 		int_output2(nb, arg, arg_len);
-	else if (ft_strchr2(arg->flags, '0'))
+	else if (ft_chr2(arg->flags, '0'))
 		int_output3(nb, arg, arg_len);
 	arg->print_count += arg_len;
 	return (arg->print_count);
@@ -67,7 +67,7 @@ void	int_output1(intmax_t nb, t_arg *arg, int arg_len)
 	intmax_t	pad_zero_nb;
 
 	pad_space_nb = ft_max(arg->width_nb - arg_len, 0);
-	pad_zero_nb = ft_max(arg->precision_nb - arg_len, 0);
+	pad_zero_nb = ft_max(arg->pre_nb - arg_len, 0);
 	if (pad_space_nb > 0 || pad_zero_nb > 0)
 	{
 		if (pad_zero_nb >= pad_space_nb)
@@ -77,10 +77,10 @@ void	int_output1(intmax_t nb, t_arg *arg, int arg_len)
 		}
 		if (pad_zero_nb < pad_space_nb)
 		{
-			if (ft_strchr2(arg->flags, '+') || ft_strchr2(arg->flags, ' ') || arg->neg_arg_int)
-				print_padded_char(pad_space_nb - pad_zero_nb - 1, arg, ' ');
-			else
-				print_padded_char(pad_space_nb - pad_zero_nb, arg, ' ');
+			if (ft_chr2(arg->flags, '+') || ft_chr2(arg->flags, ' ') ||
+			arg->neg_arg)
+				pad_space_nb -= 1;
+			print_padded_char(pad_space_nb - pad_zero_nb, arg, ' ');
 			print_int_sign(arg);
 			print_padded_char(pad_zero_nb, arg, '0');
 		}
@@ -95,11 +95,11 @@ void	int_output2(intmax_t nb, t_arg *arg, int arg_len)
 	intmax_t	pad_space_nb;
 	intmax_t	pad_zero_nb;
 
-	if (ft_strchr2(arg->flags, '+') || ft_strchr2(arg->flags, ' ') || arg->neg_arg_int)
+	if (ft_chr2(arg->flags, '+') || ft_chr2(arg->flags, ' ') || arg->neg_arg)
 		pad_space_nb = ft_max(arg->width_nb - arg_len - 1, 0);
 	else
 		pad_space_nb = ft_max(arg->width_nb - arg_len, 0);
-	pad_zero_nb = ft_max(arg->precision_nb - arg_len, 0);
+	pad_zero_nb = ft_max(arg->pre_nb - arg_len, 0);
 	print_int_sign(arg);
 	print_padded_char(pad_zero_nb, arg, '0');
 	ft_putnbr_intmax_t(nb);
@@ -110,14 +110,14 @@ void	int_output3(intmax_t nb, t_arg *arg, int arg_len)
 {
 	intmax_t	pad_zero_nb;
 
-	if (arg->neg_arg_int)
+	if (arg->neg_arg)
 	{
 		pad_zero_nb = ft_max(arg->width_nb - arg_len - 1, 0);
 		print_int_sign(arg);
 	}
 	else
 	{
-		if (ft_strchr2(arg->flags, '+') || ft_strchr2(arg->flags, ' '))
+		if (ft_chr2(arg->flags, '+') || ft_chr2(arg->flags, ' '))
 		{
 			print_int_sign(arg);
 			pad_zero_nb = ft_max(arg->width_nb - arg_len - 1, 0);

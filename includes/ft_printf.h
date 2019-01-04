@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aabdrakh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/01/03 21:42:20 by aabdrakh          #+#    #+#             */
+/*   Updated: 2019/01/03 21:42:32 by aabdrakh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -12,15 +24,13 @@ typedef struct	s_arg
 	int			field_width;
 	int			width_nb;
 	int			precision;
-	int			precision_nb;
+	int			pre_nb;
 	enum		{null, h, hh, l, ll} length;
 	char		conversion;
 	int			print_count;
-	int			neg_arg_int;
+	int			neg_arg;
 }				t_arg;
-
-int     		ft_strchr2(char *s, char c);
-
+int				ft_chr2(char *s, char c);
 long double		get_float_len(va_list list, t_arg *arg);
 int				handlers(char **format, va_list list, t_arg *arg);
 size_t			ft_nbrlen(size_t nb);
@@ -46,7 +56,8 @@ int				handle_chr(va_list list, t_arg *arg);
 int				handle_wchr(va_list list, t_arg *arg);
 int				handle_str(va_list list, t_arg *arg);
 void			str_output(va_list list, t_arg *arg);
-void			str_output_helper(t_arg *arg, char *arg_str, int min_print, int arg_len);
+void			str_output_helper(t_arg *arg, char *arg_str, int min_print,
+int arg_len);
 int				handle_wstr(va_list list, t_arg *arg);
 void			wstr_output(t_arg *arg, wchar_t *arg_wstr, int arg_len,
 															int min_print);

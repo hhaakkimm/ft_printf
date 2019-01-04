@@ -60,7 +60,7 @@ char			*ft_strncat(char *restrict s1, const char *restrict s2,
 size_t			ft_strlcat(char *restrict dst, const char *restrict src,
 	size_t dstsize);
 char			*ft_strchr(char *s, int c);
-int     		ft_strchr2(char *s, char c);
+int     		ft_chr2(char *s, char c);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strstr(const char *haystack, const char *needle);
 char			*ft_strnstr(const char *haystack, const char *needle,

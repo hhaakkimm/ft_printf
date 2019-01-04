@@ -17,7 +17,7 @@ int		handle_wchr(va_list list, t_arg *arg)
 	wchar_t		wc;
 
 	wc = va_arg(list, wchar_t);
-	if (ft_strchr2(arg->flags, '-'))
+	if (ft_chr2(arg->flags, '-'))
 	{
 		ft_putwchar(wc);
 		print_padded_char(arg->field_width - 1, arg, ' ');

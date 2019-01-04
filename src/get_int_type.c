@@ -12,7 +12,7 @@
 
 #include "../includes/ft_printf.h"
 
-intmax_t	get_int_type_by_length(va_list list, t_arg *arg)
+intmax_t		get_int_type_by_length(va_list list, t_arg *arg)
 {
 	intmax_t	nb;
 
@@ -41,7 +41,7 @@ long double		get_float_len(va_list list, t_arg *arg)
 	return (nb);
 }
 
-uintmax_t	get_unsigned_type_by_length(va_list list, t_arg *arg)
+uintmax_t		get_unsigned_type_by_length(va_list list, t_arg *arg)
 {
 	uintmax_t	nb;
 

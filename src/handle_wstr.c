@@ -20,7 +20,7 @@ int		handle_wstr(va_list list, t_arg *arg)
 
 	arg_wstr = va_arg(list, wchar_t *);
 	arg_len = ft_wstrlen(arg_wstr);
-	min_print = ft_min(arg->precision_nb, arg_len);
+	min_print = ft_min(arg->pre_nb, arg_len);
 	wstr_output(arg, arg_wstr, arg_len, min_print);
 	return (arg->print_count);
 }
@@ -34,7 +34,7 @@ void	wstr_output(t_arg *arg, wchar_t *arg_wstr, int arg_len, int min_print)
 	}
 	else if (arg->field_width == 1 || arg->width_nb > min_print)
 	{
-		if (ft_strchr2(arg->flags, '-'))
+		if (ft_chr2(arg->flags, '-'))
 		{
 			ft_putnwstr(arg_wstr, min_print);
 			print_padded_char(arg->field_width - min_print, arg, ' ');

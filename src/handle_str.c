@@ -34,7 +34,7 @@ void	str_output(va_list list, t_arg *arg)
 	if ((arg_str = va_arg(list, char *)) == NULL)
 		arg_str = "(null)";
 	arg_len = ft_strlen(arg_str);
-	min_print = ft_min(arg->precision_nb, arg_len);
+	min_print = ft_min(arg->pre_nb, arg_len);
 	(arg->precision == 0) ? min_print = arg_len : 1;
 	arg->print_count = min_print;
 	str_output_helper(arg, arg_str, min_print, arg_len);
@@ -46,7 +46,7 @@ void	str_output_helper(t_arg *arg, char *arg_str, int min_print, int arg_len)
 		ft_putnstr(arg_str, arg->print_count);
 	else if (arg->field_width == 1 || arg->width_nb > min_print)
 	{
-		if (ft_strchr2(arg->flags, '-'))
+		if (ft_chr2(arg->flags, '-'))
 		{
 			ft_putnstr(arg_str, min_print);
 			print_padded_char(arg->width_nb - min_print, arg, ' ');
