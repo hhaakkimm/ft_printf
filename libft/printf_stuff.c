@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	*ft_itoa_base_uint(uintmax_t nb, uintmax_t base_nb, char c)
+char		*ft_itoa_base_uint(uintmax_t nb, uintmax_t base_nb, char c)
 {
 	char	*result;
 	char	*base;
@@ -64,8 +64,7 @@ void		ft_putnbr_uintmax_t(uintmax_t n)
 		ft_putchar(n + 48);
 }
 
-
-void	ft_putnstr(char *str, size_t n)
+void		ft_putnstr(char *str, size_t n)
 {
 	if (!str)
 		return ;
@@ -75,7 +74,7 @@ void	ft_putnstr(char *str, size_t n)
 		return ;
 }
 
-void	ft_putwchar(wchar_t c)
+void		ft_putwchar(wchar_t c)
 {
 	write(1, &c, 1);
 }

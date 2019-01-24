@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	ft_putwstr(wchar_t *wstr)
+void		ft_putwstr(wchar_t *wstr)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ void	ft_putwstr(wchar_t *wstr)
 	}
 }
 
-void	ft_putnwstr(wchar_t *wstr, size_t n)
+void		ft_putnwstr(wchar_t *wstr, size_t n)
 {
 	if (!wstr)
 		return ;
@@ -56,7 +56,7 @@ char		*ft_strrev(char *str)
 	return (str);
 }
 
-size_t	ft_wstrlen(wchar_t *wstr)
+size_t		ft_wstrlen(wchar_t *wstr)
 {
 	size_t	i;
 

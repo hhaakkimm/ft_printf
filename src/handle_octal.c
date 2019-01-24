@@ -69,24 +69,47 @@ void	oct_output2(char *oct_str, t_arg *arg, int arg_len)
 	}
 }
 
-void	oct_output3(char *oct_str, t_arg *arg, int arg_len)
+void	oct_output3(char *oct_str, t_arg *arg, int arg_len, int typo)
 {
 	uintmax_t	pad_zero_nb;
 
-	if (ft_chr2(arg->flags, '#'))
+	if (typo == 1)
 	{
-		pad_zero_nb = ft_max(arg->width_nb - arg_len - 1, 0);
-		print_hex_flag_hash(arg);
+		if (ft_chr2(arg->flags, '-'))
+			oct_output2(oct_str, arg, arg_len);
+		else if (ft_chr2(arg->flags, '0'))
+			oct_output3(oct_str, arg, arg_len, 2);
 	}
 	else
-		pad_zero_nb = ft_max(arg->width_nb - arg_len, 0);
-	print_padded_char(pad_zero_nb, arg, '0');
-	ft_putstr(oct_str);
+	{
+		if (ft_chr2(arg->flags, '#'))
+		{
+			pad_zero_nb = ft_max(arg->width_nb - arg_len - 1, 0);
+			print_hex_flag_hash(arg);
+		}
+		else
+			pad_zero_nb = ft_max(arg->width_nb - arg_len, 0);
+		print_padded_char(pad_zero_nb, arg, '0');
+		ft_putstr(oct_str);
+	}
+}
+
+void	doit(int nb, t_arg *arg, int arg_len, char *oct_str)
+{
+	int	i;
+
+	if (nb == 0 && ft_chr2(arg->flags, '#'))
+	{
+		i = -1;
+		while (++i < 6)
+			if (arg->flags[i] == '#')
+				arg->flags[i] = 'x';
+	}
+	oct_output1(oct_str, arg, arg_len);
 }
 
 int		handle_octal(va_list list, t_arg *arg)
 {
-	int			i;
 	uintmax_t	nb;
 	char		*oct_str;
 	int			arg_len;
@@ -105,25 +128,10 @@ int		handle_octal(va_list list, t_arg *arg)
 			free(oct_str);
 			return (arg->print_count);
 		}
-		if (nb == 0 && ft_chr2(arg->flags, '#'))
-		{
-			i = -1;
-			while (++i < 6)
-				if (arg->flags[i] == '#')
-					arg->flags[i] = 'x';
-		}
-		oct_output1(oct_str, arg, arg_len);
+		doit(nb, arg, arg_len, oct_str);
 	}
 	else if (ft_chr2(arg->flags, '-') || ft_chr2(arg->flags, '0'))
-		oct_output_helper(oct_str, arg, arg_len);
+		oct_output3(oct_str, arg, arg_len, 1);
 	free(oct_str);
 	return (arg->print_count + arg_len);
-}
-
-void	oct_output_helper(char *oct_str, t_arg *arg, int arg_len)
-{
-	if (ft_chr2(arg->flags, '-'))
-		oct_output2(oct_str, arg, arg_len);
-	else if (ft_chr2(arg->flags, '0'))
-		oct_output3(oct_str, arg, arg_len);
 }

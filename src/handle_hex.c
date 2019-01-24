@@ -63,38 +63,42 @@ void		hex_output3(char *hex_str, t_arg *arg, int arg_len)
 {
 	uintmax_t	pad_zero_nb;
 
-	if (ft_chr2(arg->flags, '#'))
+	if (ft_chr2(arg->flags, '-'))
+		hex_output2(hex_str, arg, arg_len);
+	else if (ft_chr2(arg->flags, '0'))
 	{
-		pad_zero_nb = ft_max(arg->width_nb - arg_len - 2, 0);
-		print_hex_flag_hash(arg);
+		if (ft_chr2(arg->flags, '#'))
+		{
+			pad_zero_nb = ft_max(arg->width_nb - arg_len - 2, 0);
+			print_hex_flag_hash(arg);
+		}
+		else
+			pad_zero_nb = ft_max(arg->width_nb - arg_len, 0);
+		print_padded_char(pad_zero_nb, arg, '0');
+		ft_putstr(hex_str);
 	}
-	else
-		pad_zero_nb = ft_max(arg->width_nb - arg_len, 0);
-	print_padded_char(pad_zero_nb, arg, '0');
-	ft_putstr(hex_str);
+}
+
+void		change_flags(t_arg *arg, char c1, char c2)
+{
+	int			i;
+
+	i = -1;
+	while (++i < 6)
+		if (arg->flags[i] == c1)
+			arg->flags[i] = c2;
 }
 
 int			handle_hex(va_list list, t_arg *arg)
 {
 	uintmax_t	nb;
-	int			i;
 	char		*hex_str;
 	int			arg_len;
 
 	if (arg->precision || ft_chr2(arg->flags, '-'))
-	{
-		i = -1;
-		while (++i < 6)
-			if (arg->flags[i] == '0')
-				arg->flags[i] = 'x';
-	}
+		change_flags(arg, '0', 'x');
 	if ((nb = get_unsigned_type_by_length(list, arg)) == 0)
-	{
-		i = -1;
-		while (++i < 6)
-			if (arg->flags[i] == '#')
-				arg->flags[i] = 'x';
-	}
+		change_flags(arg, '#', 'x');
 	hex_str = ft_itoa_base_uint(nb, 16, arg->conversion);
 	arg_len = ft_strlen(hex_str);
 	if (!ft_chr2(arg->flags, '-') && !ft_chr2(arg->flags, '0'))
@@ -109,15 +113,7 @@ int			handle_hex(va_list list, t_arg *arg)
 		hex_output1(hex_str, arg, arg_len);
 	}
 	else if (ft_chr2(arg->flags, '-') || ft_chr2(arg->flags, '0'))
-		hex_helper(hex_str, arg, arg_len);
+		hex_output3(hex_str, arg, arg_len);
 	free(hex_str);
 	return (arg->print_count + arg_len);
-}
-
-void		hex_helper(char *hex_str, t_arg *arg, int arg_len)
-{
-	if (ft_chr2(arg->flags, '-'))
-		hex_output2(hex_str, arg, arg_len);
-	else if (ft_chr2(arg->flags, '0'))
-		hex_output3(hex_str, arg, arg_len);
 }

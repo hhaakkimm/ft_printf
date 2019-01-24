@@ -34,14 +34,14 @@ INCLUDE = libft.h
 all: $(NAME)
 
 $(NAME):
-	@gcc -c -Wall -Wextra -Werror $(SRC) -I $(INCLUDE)
-	@ar rc $(NAME) $(OBJECTS)
-	@ranlib $(NAME)
+	gcc -c -Wall -Wextra -Werror $(SRC) -I $(INCLUDE)
+	ar rc $(NAME) $(OBJECTS)
+	ranlib $(NAME)
 
 clean:
-	@/bin/rm -f $(OBJECTS)
+	/bin/rm -f $(OBJECTS)
 
 fclean: clean
-	@/bin/rm -f $(NAME)
+	/bin/rm -f $(NAME)
 
 re: fclean all

@@ -15,18 +15,19 @@
 
 int main()
 {
-	double d = 10.9476;
-	int dd = 111;
-	ft_printf("%f\n", d);
-	ft_printf("%.4f\n", d);
-	ft_printf("%.3f\n", d);
+	ft_printf("%010s is a string\n", "this");
+	printf("%010s is a string", "this");
+	// ft_printf("%f\n", d);
+	// ft_printf("%.4f\n", d);
+	// ft_printf("%.3f\n", d);
 
-	printf("%f\n", d);
-	printf("%.4f\n", d);
-	printf("%.3f\n", d);
-	ft_printf("%.2f\n", d);
-	ft_printf("%.5f\n", d);
-	ft_printf("%.6f\n", d);
-	ft_printf("%.7f\n", d);
-	printf("%f", d);
+	// printf("%f\n", d);
+	// printf("%.4f\n", d);
+	// printf("%.3f\n", d);
+	// ft_printf("%.2f\n", d);
+	// ft_printf("%.5f\n", d);
+	// ft_printf("%lf", t);
+	// ft_printf("%.6f\n", d);
+	// ft_printf("%.7f\n", d);
+
 }

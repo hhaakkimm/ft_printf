@@ -30,6 +30,7 @@ typedef struct	s_arg
 	int			print_count;
 	int			neg_arg;
 }				t_arg;
+
 int				ft_chr2(char *s, char c);
 long double		get_float_len(va_list list, t_arg *arg);
 int				handlers(char **format, va_list list, t_arg *arg);
@@ -57,7 +58,7 @@ int				handle_wchr(va_list list, t_arg *arg);
 int				handle_str(va_list list, t_arg *arg);
 void			str_output(va_list list, t_arg *arg);
 void			str_output_helper(t_arg *arg, char *arg_str, int min_print,
-int arg_len);
+																int arg_len);
 int				handle_wstr(va_list list, t_arg *arg);
 void			wstr_output(t_arg *arg, wchar_t *arg_wstr, int arg_len,
 															int min_print);
@@ -73,7 +74,7 @@ void			ptr_output2(char *address_str, t_arg *arg, int arg_len);
 int				handle_ptr(va_list list, t_arg *arg);
 void			oct_output1(char *oct_str, t_arg *arg, int arg_len);
 void			oct_output2(char *oct_str, t_arg *arg, int arg_len);
-void			oct_output3(char *oct_str, t_arg *arg, int arg_len);
+void			oct_output3(char *oct_str, t_arg *arg, int arg_len, int typo);
 int				handle_octal(va_list list, t_arg *arg);
 void			oct_output_helper(char *oct_str, t_arg *arg, int arg_len);
 void			unsigned_output1(char *unsigned_str, t_arg *arg, int arg_len);

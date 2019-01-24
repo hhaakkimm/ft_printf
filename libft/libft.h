@@ -35,7 +35,7 @@ char			*ft_strrev(char *str);
 size_t			ft_wstrlen(wchar_t *wstr);
 int				ft_sqrt(int x);
 size_t			ft_lstcount(t_list *lst);
-char    		*ft_compare(char *s1, char *s2);
+char			*ft_compare(char *s1, char *s2);
 void			*ft_memchr(const void *s, int c, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
 void			*ft_memmove(void *dst, const void *src, size_t len);
@@ -60,7 +60,7 @@ char			*ft_strncat(char *restrict s1, const char *restrict s2,
 size_t			ft_strlcat(char *restrict dst, const char *restrict src,
 	size_t dstsize);
 char			*ft_strchr(char *s, int c);
-int     		ft_chr2(char *s, char c);
+int				ft_chr2(char *s, char c);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strstr(const char *haystack, const char *needle);
 char			*ft_strnstr(const char *haystack, const char *needle,

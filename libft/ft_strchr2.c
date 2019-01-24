@@ -10,18 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int     ft_chr2(char *s, char c)
+int		ft_chr2(char *s, char c)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (s[i])
-    {
-        if (s[i] == c)
-        {
-            return (i);
-        }
-        i++;
-    }
-    return (-1);
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+		{
+			return (i);
+		}
+		i++;
+	}
+	return (-1);
 }

@@ -12,14 +12,14 @@
 
 #include <string.h>
 
-char    *ft_compare(char *s1, char *s2)
+char	*ft_compare(char *s1, char *s2)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (s1 && s2 && s1[i] == s2[i])
-        i++;
-    if (s2[i] == '\0')
-        return (s1 + i);
-    return (NULL);
+	i = 0;
+	while (s1 && s2 && s1[i] == s2[i])
+		i++;
+	if (s2[i] == '\0')
+		return (s1 + i);
+	return (NULL);
 }
