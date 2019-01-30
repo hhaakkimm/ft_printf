@@ -25,10 +25,17 @@ typedef struct	s_arg
 	int			width_nb;
 	int			precision;
 	int			pre_nb;
-	enum		{null, h, hh, l, ll} length;
 	char		conversion;
 	int			print_count;
 	int			neg_arg;
+	enum
+	{
+		null,
+		h,
+		hh,
+		l,
+		ll
+	}			length;
 }				t_arg;
 
 int				ft_chr2(char *s, char c);
